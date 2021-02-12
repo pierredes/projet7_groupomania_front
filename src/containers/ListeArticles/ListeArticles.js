@@ -26,19 +26,31 @@ class ListeArticles extends Component {
                 console.log(error)
             });
     }
-    
+
+    postSelectedHandler = (id) => {
+        this.setState({selectedPostId: id});
+    }
+
     render() {
+        let posts = this.state.articles.map(article => {
+            return (
+                <Article 
+                    titre={article.titre}
+                    sujet={article.sujet}
+                    contenu={article.contenu}
+                    key={article.id} 
+                    click={() => this.postSelectedHandler(article.id)} />
+            )
+        })
+
         return (
             <div className="listeArticle">
                 <h2> test</h2>
-                <Article article={this.state.articles} />
+                {posts}
             </div>
             
         )
     }
-
-
-
 }
 
 export default ListeArticles;
