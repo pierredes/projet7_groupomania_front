@@ -2,17 +2,12 @@ import React from 'react';
 
 import './Article.css';
 
-const article = (props) => props.article.map(article => {
-    return (
-        <section key={article.id} className="article">
-            <h2>{article.titre}</h2>
-            <h4>{article.sujet}</h4>
-            <p>{article.contenu}</p>
+const article = (props) => (
+        <section className="article" onClick={props.click}>
+            <h2>{props.titre}</h2>
+            <h4>{props.sujet}</h4>
+            <p>{props.contenu}</p>
         </section>
-    )
-})
-    
-
-
+)
 
 export default article;
