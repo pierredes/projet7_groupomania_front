@@ -1,9 +1,12 @@
 .listeArticle {
     margin: 0;
     text-align: center;
-    background-color: lightgray;
 }
 
 .listeArticle h2 {
     margin-top: 0;
+}
+
+h1 {
+    font-size: 200;
 }
