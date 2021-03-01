@@ -1,20 +1,42 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import ConnecterContext from '../../Context/Context';
+import Logo from '../Logo/Logo';
 
 
 import './header.css';
 
-const header = () => (
-        <header>
-            <h1> Groupomania</h1>
-            <nav>
-                <ul>
-                    <li><NavLink to='/' exact> Accueil</NavLink></li>
-                    <li><NavLink to='/creer-post'>Créer un post</NavLink></li>
-                </ul>
-            </nav>
-        </header>
-)
+const header = (props) => {
+
+        return (
+            <ConnecterContext.Consumer>
+                {(context) => (
+                    context.connecter ? 
+                        <header>
+                            <Logo />
+                            <nav>
+                                <ul>
+                                    <li><NavLink to='/' exact > Accueil</NavLink></li>
+                                    <li><NavLink to='/creer-post'>Créer un post</NavLink></li>
+                                    <li><button onClick={props.click} > Déconnection</button></li>
+                                </ul>
+                            </nav>
+                        </header>
+                    :
+                        <header>
+                            <h1> Groupomania</h1>
+                            <nav>
+                                <ul>
+                                    <li><NavLink to='/inscription'> Inscription</NavLink></li>
+                                    <li><NavLink to='/connection'>Connection</NavLink></li>
+                                </ul>
+                            </nav>
+                        </header>
+                )}
+            </ConnecterContext.Consumer>
+        )
+        
+}
 
 
 export default header;
