@@ -11,11 +11,12 @@ class ListeArticles extends Component {
     state = {
         articles: [],
         selectedPostId: null,
-        connecter: false
+        connecter: false,
+        token: localStorage.getItem('token')
     }
-
-    componentDidMount() {
-        axios.get('http://localhost:3000/api/post')
+    
+    componentDidMount() {    
+        axios.get('http://localhost:3000/api/post', {headers: {Authorization: this.state.token}})
             .then(res => {
                 const postLimite = res.data.post.slice(0,10);
                 const listeArticle = postLimite.map(article => {
@@ -47,7 +48,8 @@ class ListeArticles extends Component {
                         <Article 
                             titre={article.titre}
                             sujet={article.sujet}
-                            contenu={article.contenu.substring(0,300)} 
+                            contenu={article.contenu.substring(0,300)}
+                            nom={article.utilisateur.prenom}
                             click={() => this.postSelectedHandler(article.id)} />
                     </Link>
                 )
