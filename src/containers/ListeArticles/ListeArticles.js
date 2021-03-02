@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import Article from '../../components/Article/Article';
 
 import './ListeArticles.css';
-import ArticleComplet from '../ArticleComplet/ArticleComplet';
 
 class ListeArticles extends Component {
 
@@ -15,7 +14,7 @@ class ListeArticles extends Component {
         connecter: false
     }
 
-    componentDidMount(props) {
+    componentDidMount() {
         axios.get('http://localhost:3000/api/post')
             .then(res => {
                 const postLimite = res.data.post.slice(0,10);
@@ -29,8 +28,7 @@ class ListeArticles extends Component {
             .catch(error => {
                 console.log(error)
             });
-            const token = localStorage.getItem('token');
-        if(token) {
+        if(localStorage.getItem('token')) {
             this.setState({connecter: true})
         }
     }
@@ -64,11 +62,9 @@ class ListeArticles extends Component {
         
 
         return (
-            <div>
-                <section className="listeArticle">
-                <h2> test</h2>
+            <div className="listeArticle">
+                <h1> Bonjour et bienvenue sur le forum de groupomania</h1>
                 {posts}
-                </section>
             </div>
             
         )
