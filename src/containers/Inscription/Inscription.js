@@ -14,7 +14,8 @@ class inscription extends Component {
     }
 
 
-    inscription = () => {
+    inscription = (event) => {
+        event.preventDefault();
         let data = {
             nom: this.state.nom,
             prenom: this.state.prenom,
