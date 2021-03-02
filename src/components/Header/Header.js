@@ -24,7 +24,7 @@ const header = (props) => {
                         </header>
                     :
                         <header>
-                            <h1> Groupomania</h1>
+                            <Logo />
                             <nav>
                                 <ul>
                                     <li><NavLink to='/inscription'> Inscription</NavLink></li>
