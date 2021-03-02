@@ -1,0 +1,23 @@
+.article-complet {
+    text-align: center;
+    border: solid 1px black;
+    width: 50%;
+    margin: 20px auto;
+    background-color: rgba(26, 115, 232, 0.2);
+}
+
+.listeCommentaire {
+    text-align: center;
+    border: solid 1px black;
+    width: 50%;
+    margin: 20px auto;
+    background-color: rgba(26, 115, 232, 0.2);
+}
+
+.commenter {
+    background-color: rgba(26, 115, 232, 0.2);
+    border: solid 1px black;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
