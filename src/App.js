@@ -25,14 +25,17 @@ class App extends Component {
   }
 
   connection = (email, password) => {
+    const jwt = require('jsonwebtoken');
     let data = {
         email: Object.values(email)[0],
         password: Object.values(password)[0]
     }
     axios.post('http://localhost:3000/api/authentification/connection/', data)
         .then(res => {
-            const token = res.data.token.split('.')[1];
+            const token = res.data.token;
             localStorage.setItem('token', token);
+            const userId = jwt.decode(token);
+            localStorage.setItem('userId', userId.userId )
             this.setState({ redirection: true, connecter: true, token: token});
         })
         .catch(err => {
@@ -43,6 +46,7 @@ class App extends Component {
   deconnection = () => {
     this.setState({ connecter: false, token: null, redirection: false})
     localStorage.removeItem('token');
+    localStorage.removeItem('userId');
 }
 
 
