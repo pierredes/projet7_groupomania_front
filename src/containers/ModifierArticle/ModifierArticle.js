@@ -21,7 +21,7 @@ class modifierArticle extends Component {
             sujet: this.state.sujet,
             contenu: this.state.contenu,
         };
-        axios.put('http://localhost:3000/api/post/modification/' + this.props.match.params.id, data)
+        axios.put('http://localhost:3000/api/post/modification/' + this.props.match.params.id, data, {headers: {Authorization: localStorage.getItem('token')}})
             .then(res => {
                 this.setState({ redirection: true });
             })
