@@ -3,4 +3,6 @@
     border: none;
     background-color: rgba(26, 115, 232, 0.2);
     padding: 10px;
+    word-wrap: break-word;
+    white-space: pre-line;
 }
