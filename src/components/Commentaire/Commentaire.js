@@ -4,7 +4,7 @@ import './Commentaire.css';
 
 const commentaire = (props) => (
     <div className='commentaire'>
-        <p>Pierre : </p>
+        <p>{props.prenom}</p>
         <p>{props.contenu}</p>
         <hr />
     </div>
