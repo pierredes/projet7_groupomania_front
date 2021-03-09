@@ -4,6 +4,7 @@
     width: 50%;
     margin: 20px auto;
     background-color: rgba(26, 115, 232, 0.2);
+    word-wrap: break-word;
 }
 
 .listeCommentaire {
@@ -12,6 +13,7 @@
     width: 50%;
     margin: 20px auto;
     background-color: rgba(26, 115, 232, 0.2);
+    word-wrap: break-word;
 }
 
 .commenter {
@@ -20,4 +22,11 @@
     width: 50%;
     margin: auto;
     text-align: center;
+}
+
+.page_article_complet p {
+    word-wrap: break-word;
+    white-space: pre-line;
+    padding: 20px;
+    margin: 20px
 }
