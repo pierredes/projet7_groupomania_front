@@ -20,12 +20,12 @@ class creerArticle extends Component {
         let data = {
             titre: this.state.titre,
             sujet: this.state.sujet,
-            contenu: this.state.contenu
+            contenu: this.state.contenu,
+            user_id: localStorage.getItem('userId')
         };
-        axios.post('http://localhost:3000/api/post/', data)
+        axios.post('http://localhost:3000/api/post/', data, {headers: {Authorization: localStorage.getItem('token')}})
             .then(res => {
-                // this.setState({ redirection: true })
-               this.setState({ message: res.data.message })
+               this.setState({ message: res.data.message, titre: '', sujet: "", contenu: '' })
             })
             .catch(error => {
                 console.log(error)
@@ -40,9 +40,9 @@ class creerArticle extends Component {
 
         let form = (
             <form>
-                <Input inputtype='input' type="text" name="titre" placeholder="titre" label='Veuillez renseigner un titre (ceci est obligatoire)' value={this.state.titre} onChange={(event) => {this.setState({ titre: event.target.value })}} required/>
-                <Input inputtype='input' type="text" name="sujet" placeholder="sujet" label='De quoi va parler votre article ? (ceci est obligatoire)' onChange={(event) => {this.setState({ sujet: event.target.value })}} />
-                <Input inputtype='textarea' type="textarea" name="Contenu" placeholder="Contenu" label='Dites nous en plus sur le sujet ! (ceci est obligatoire)' onChange={(event) => {this.setState({ contenu: event.target.value })}} />
+                <Input inputtype='input' type="text" name="titre" placeholder="titre" label='Veuillez renseigner un titre' value={this.state.titre} onChange={(event) => {this.setState({ titre: event.target.value })}} required/>
+                <Input inputtype='input' type="text" name="sujet" placeholder="sujet" label='De quoi va parler votre article ?' value={this.state.sujet} onChange={(event) => {this.setState({ sujet: event.target.value })}} />
+                <Input inputtype='textarea' type="textarea" name="Contenu" placeholder="Contenu" label='Dites nous en plus sur le sujet !' value={this.state.contenu} onChange={(event) => {this.setState({ contenu: event.target.value })}} />
                 <button onClick={this.postData}> Envoyer </button>
             </form>
         )
@@ -52,7 +52,7 @@ class creerArticle extends Component {
             <div>
                 <h1> Créer votre article !</h1>
                 {form}
-                {this.state.message}
+                <p className="message_validation">{this.state.message}</p>
             </div>
             
         )
