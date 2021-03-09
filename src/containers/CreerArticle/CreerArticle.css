@@ -8,3 +8,9 @@ form {
     box-sizing: border-box;
     background-color: rgba(26, 115, 232, 0.2);
 }
+
+.message_validation {
+    text-align: center;
+    color: red;
+    font-size: 30px;
+}
