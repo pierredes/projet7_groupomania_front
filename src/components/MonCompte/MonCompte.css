@@ -1,0 +1,16 @@
+.Conteneur {
+    display: flex;
+    align-items: center;
+}
+
+.MonCompte {
+    text-align: center;
+}
+
+.AVenir {
+    width: 50%;
+    height: 500px;
+    border: solid 1px black;
+    margin: 50px auto;
+    text-align: center;
+}
