@@ -1,0 +1,14 @@
+.ListeCommentaire {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgba(26, 115, 232, 0.2);
+    width: 80%;
+    margin: auto;
+}
+
+.Commentaire {
+    width: 30%;
+    border: 1px solid black;
+    margin: 20px;
+    text-align: center;
+}
