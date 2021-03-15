@@ -3,20 +3,21 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 import Article from '../../components/Article/Article';
+import ConnecterContext from '../../Context/Context';
 
 import './ListeArticles.css';
 
 class ListeArticles extends Component {
 
+    static contextType = ConnecterContext;
+
     state = {
         articles: [],
-        selectedPostId: null,
-        connecter: false,
-        token: localStorage.getItem('token')
+        selectedPostId: null
     }
-    
+
     componentDidMount() {    
-        axios.get('http://localhost:3000/api/post', {headers: {Authorization: this.state.token}})
+        axios.get('http://localhost:3000/api/post', {headers: {Authorization: localStorage.getItem('token')}})
             .then(res => {
                 const postLimite = res.data.post.slice(0,10);
                 const listeArticle = postLimite.map(article => {
@@ -29,9 +30,6 @@ class ListeArticles extends Component {
             .catch(error => {
                 console.log(error)
             });
-        if(localStorage.getItem('token')) {
-            this.setState({connecter: true})
-        }
     }
 
     postSelectedHandler = (id) => {
@@ -41,7 +39,7 @@ class ListeArticles extends Component {
     render() {
         let posts = null;
 
-        if(this.state.connecter){
+        if(this.context.connecter){
             posts = this.state.articles.map(article => {
                 return (
                     <Link to={'/' + article.id} key={article.id}>
@@ -55,20 +53,18 @@ class ListeArticles extends Component {
                 )
             })
         }
-        else {
-            posts =  (
-                <p> Pour voir le contenu de cette page veuilez vous connecter</p>
-            )
-        }
-
-        
-
         return (
-            <div className="listeArticle">
-                <h1> Bonjour et bienvenue sur le forum de groupomania</h1>
-                {posts}
-            </div>
-            
+            <ConnecterContext.Consumer>
+                {(context) => (
+                    context.connecter ?
+                    <div className="listeArticle">
+                        <h1> {this.props.titre} </h1>
+                        {posts}
+                    </div>
+                    : <p style={{textAlign: 'center', color: 'red'}}> Pour voir le contenu de cette page veuilez vous connecter</p>
+                )}
+                
+            </ConnecterContext.Consumer>
         )
     }
 }
