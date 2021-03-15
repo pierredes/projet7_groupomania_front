@@ -9,11 +9,11 @@ class inscription extends Component {
             nom: '',
             prenom: '',
             poste: '',
+            admin: false,
             email: '',
             password: '',
             message: ''
     }
-
 
     inscription = (event) => {
         event.preventDefault();
@@ -21,6 +21,7 @@ class inscription extends Component {
             nom: this.state.nom,
             prenom: this.state.prenom,
             poste: this.state.poste,
+            admin: this.state.admin,
             email: this.state.email,
             password: this.state.password,
         }
