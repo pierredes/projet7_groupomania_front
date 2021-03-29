@@ -17,9 +17,9 @@ const header = (props) => {
                                 <ul>
                                     <li><NavLink to='/' exact > Accueil</NavLink></li>
                                     <li><NavLink to='/creer-post'>Créer un post</NavLink></li>
-                                    <li><button onClick={props.click} > Déconnection</button></li>
                                     <li><NavLink to='/mon-compte'>Mon compte </NavLink></li>
                                     <li><NavLink to='/admin'>Admin </NavLink></li>
+                                    <li><button onClick={props.click} > Déconnection</button></li>
                                 </ul>
                             </nav>
                         </header>
@@ -29,8 +29,8 @@ const header = (props) => {
                             <ul>
                                 <li><NavLink to='/' exact > Accueil</NavLink></li>
                                 <li><NavLink to='/creer-post'>Créer un post</NavLink></li>
-                                <li><button onClick={props.click} > Déconnection</button></li>
                                 <li><NavLink to='/mon-compte'>Mon compte </NavLink></li>
+                                <li><button onClick={props.click} > Déconnection</button></li>
                             </ul>
                         </nav>
                     </header>
