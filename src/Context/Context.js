@@ -4,6 +4,7 @@ const connecterContext = React.createContext({
     connecter: false,
     token: null,
     admin: false,
+    user_id: null,
     login: () => {}
 });
 
