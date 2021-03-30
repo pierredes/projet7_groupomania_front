@@ -17,7 +17,7 @@ class ListeArticles extends Component {
     }
 
     componentDidMount() {    
-        axios.get('http://localhost:3000/api/post', {headers: {Authorization: localStorage.getItem('token')}})
+        axios.get('http://localhost:8080/api/post', {headers: {Authorization: localStorage.getItem('token')}})
             .then(res => {
                 const postLimite = res.data.post.slice(0,10);
                 const listeArticle = postLimite.map(article => {
