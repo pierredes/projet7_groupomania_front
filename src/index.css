@@ -10,7 +10,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: lightgrey;
+  background: url(/src/assets/image_groupomania.jpg) no-repeat center center fixed; 
+  background-size: cover;
 }
 
 code {
