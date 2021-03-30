@@ -1,18 +1,22 @@
 .ListeArticle {
     display: flex;
     flex-wrap: wrap;
-    background-color: rgba(26, 115, 232, 0.2);
+    background-color: rgba(9, 31, 67, 0.9);
     width: 80%;
     margin: auto;
 }
 
 .Article {
     width: 30%;
-    border: 1px solid black;
+    border: 1px solid white;
     margin: 20px;
     text-align: center;
 }
 
 h2 { 
     text-align: center;
+}
+
+h3 {
+    color: white;
 }

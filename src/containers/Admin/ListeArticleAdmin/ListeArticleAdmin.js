@@ -14,10 +14,12 @@ class admin extends ListeArticles {
             updatePage: false
         }
     }
+    
+    static contextType = ConnecterContext;
 
     componentDidUpdate() {
         if(this.state.updatePage) {
-            axios.get('http://localhost:3000/api/post/',  {headers: {Authorization: localStorage.getItem('token')}})
+            axios.get('http://localhost:8080/api/post/',  {headers: {Authorization: localStorage.getItem('token')}})
             .then((res) => {
                 const posts = res.data.post;
                 const postsUpdate = posts.map(article => {
@@ -34,7 +36,7 @@ class admin extends ListeArticles {
     }
 
     supprimerArticle = (id) => {
-        axios.delete('http://localhost:3000/api/post/supression/' + id,  {headers: {Authorization: localStorage.getItem('token')}})
+        axios.delete('http://localhost:8080/api/post/supression/' + id,  {data: {admin: this.context.admin}, headers: {Authorization: localStorage.getItem('token')}})
             .then(() => {
                 this.setState({ updatePage: true });
             })
@@ -48,14 +50,14 @@ class admin extends ListeArticles {
         let post = null;
         post = this.state.articles.map((article) => {
              return (
-                <Link to={'/' + article.id} key={article.id} className={Style.Article}>
-                <div>
+                <div className={Style.Article} key={article.id}>
+                <Link to={'/' + article.id} >
                     <h3>Titre : {article.titre}</h3>
                     <p>Sujet : {article.sujet}</p>
-                    <p> De: {article.utilisateur.prenom} {article.utilisateur.nom}</p>
-                    <button onClick={() => {this.supprimerArticle(article.id)}}> Supprimer </button>
-                </div>
+                    <p> De: {article.utilisateur.prenom} {article.utilisateur.nom}</p>                   
                 </Link>
+                <button onClick={() => {this.supprimerArticle(article.id)}}> Supprimer </button>
+                </div>
             )
         })
 
@@ -66,7 +68,7 @@ class admin extends ListeArticles {
                         <div>
                             <h1> Bienvenue sur l'interface d'administration</h1>
                             <h2> Voici la liste des posts disponible !</h2>
-                            <p> Si vous souhaitez administrer les commentaires cliquez <Link to='/admin/commentaire/'>ici</Link></p>
+                            <button><Link to='/admin/commentaire/'>Commentaire</Link></button>
                             <div className={Style.ListeArticle}>
                                 {post}
                             </div>
