@@ -7,7 +7,8 @@ class connection extends Component {
 
     state = {
             email: '',
-            password: ''
+            password: '',
+            error: ''
     }
 
     render() {
@@ -29,6 +30,7 @@ class connection extends Component {
                         this.props.connection(email, password); 
                     }
                 }> Envoyer </button>
+                <p>{this.props.erreur} </p>
             </form>
 
         )
