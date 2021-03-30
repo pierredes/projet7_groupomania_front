@@ -1,9 +1,12 @@
 .article {
-    text-align: center;
     border: none;
     background-color: rgba(9, 31, 67, 0.9);
     padding: 10px;
     word-wrap: break-word;
     white-space: pre-line;
     color: white;
+}
+
+.auteur {
+    font-size: 12px;
 }
