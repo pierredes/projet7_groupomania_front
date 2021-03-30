@@ -4,24 +4,28 @@ import { Link, Redirect } from 'react-router-dom';
 
 import Commentaire from '../../components/Commentaire/Commentaire';
 import Input from '../../components/Input/Input';
+import ConnecterContext from '../../Context/Context';
 
 
 import './ArticleComplet.css';
 
 class ArticleComplet extends Component {
 
+    static contextType = ConnecterContext 
+
     state = {
         articleCharger: null,
         commentaire: [],
         redirection: false,
         commenter: '',
-        updateComentaire: false
+        updateComentaire: false,
+        error: ''
     }
 
     componentDidMount () {
         if ( this.props.match.params.id ) {
             if ( !this.state.articleCharger || (this.state.articleCharger && this.state.articleCharger.id !== this.props.id) ) {
-                axios.get( 'http://localhost:3000/api/post/' + this.props.match.params.id, {headers: {Authorization: localStorage.getItem('token')}} )
+                axios.get( 'http://localhost:8080/api/post/' + this.props.match.params.id, {headers: {Authorization: localStorage.getItem('token')}} )
                     .then( res => {
                         this.setState({ articleCharger: res.data.post })
                     });
@@ -30,7 +34,7 @@ class ArticleComplet extends Component {
 
         if ( this.props.match.params.id ) {
             if ( !this.state.articleCharger || (this.state.articleCharger && this.state.articleCharger.id !== this.props.id) ) {
-                axios.get( 'http://localhost:3000/api/commentaire/' + this.props.match.params.id, {headers: {Authorization: localStorage.getItem('token')}})
+                axios.get( 'http://localhost:8080/api/commentaire/' + this.props.match.params.id, {headers: {Authorization: localStorage.getItem('token')}})
                     .then( res => { 
                         const commentaireRecent = res.data.commentaire;
                         const recupereCommentaireRecent = commentaireRecent.map(commentaire => {
@@ -49,7 +53,7 @@ class ArticleComplet extends Component {
         if ( this.props.match.params.id ) {
             if ( !this.state.articleCharger || (this.state.articleCharger && this.state.articleCharger.id !== this.props.id) ) {
                 if(this.state.updateComentaire) {
-                    axios.get( 'http://localhost:3000/api/commentaire/' + this.props.match.params.id, {headers: {Authorization: localStorage.getItem('token')}})
+                    axios.get( 'http://localhost:8080/api/commentaire/' + this.props.match.params.id, {headers: {Authorization: localStorage.getItem('token')}})
                     .then( res => {
                         const commentaireRecent = res.data.commentaire;
                         const recupereCommentaireRecent = commentaireRecent.map(commentaire => {
@@ -67,12 +71,14 @@ class ArticleComplet extends Component {
     
 
     supprimerArticle = () => {
-        axios.delete('http://localhost:3000/api/post/supression/' + this.props.match.params.id,  {headers: {Authorization: localStorage.getItem('token')}})
+        axios.delete('http://localhost:8080/api/post/supression/' + this.props.match.params.id,
+        {headers: {Authorization: localStorage.getItem('token')}, 
+        data: {user_id: localStorage.getItem('userId'), admin: this.context.admin}})
             .then(() => {
                 this.setState({ redirection: true })
             })
             .catch(error => {
-                console.log(error)
+                this.setState({error: error.response.data.message })
             })
     }
 
@@ -83,7 +89,7 @@ class ArticleComplet extends Component {
             user_id: localStorage.getItem('userId'),
             post_id: this.props.match.params.id
         }
-        axios.post('http://localhost:3000/api/commentaire', data, {headers: {Authorization: localStorage.getItem('token')}})
+        axios.post('http://localhost:8080/api/commentaire', data, {headers: {Authorization: localStorage.getItem('token')}})
             .then(res => {
                 this.setState({ commenter: data.contenu, updateComentaire: true })
             })
@@ -98,14 +104,14 @@ class ArticleComplet extends Component {
             post = (
                 <div className="article-complet">
                     <h1>{this.state.articleCharger.titre}</h1>
-                    <h3>{this.state.articleCharger.sujet}</h3>
+                    <h2>{this.state.articleCharger.sujet}</h2>
                     <p>{this.state.articleCharger.contenu}</p>
                     <Link to={{
                         pathname:'/modifier/' + this.props.match.params.id,
                         params:{
                             titre: this.state.articleCharger.titre,
-                            contenu: this.state.articleCharger.sujet,
-                            sujet: this.state.articleCharger.contenu
+                            sujet: this.state.articleCharger.sujet,
+                            contenu: this.state.articleCharger.contenu
                         }
                     }}><button> Modifier </button></Link> 
                     <button onClick={this.supprimerArticle}> Supprimer </button>
@@ -130,6 +136,7 @@ class ArticleComplet extends Component {
         return (
             <div className='page_article_complet'>
                 {post}
+                {this.state.error}
                 <div className="commenter">
                     <h2> Commenter </h2>
                     <Input inputtype='textarea' type="text" name="commenter" placeholder="commenter" onChange={(event) => {this.setState({ commenter: event.target.value })}} required/>

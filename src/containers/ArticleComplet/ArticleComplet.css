@@ -1,10 +1,10 @@
 .article-complet {
-    text-align: center;
     border: solid 1px black;
     width: 50%;
     margin: 20px auto;
-    background-color: rgba(26, 115, 232, 0.2);
+    background-color: rgba(9, 31, 67, 0.9);
     word-wrap: break-word;
+    color: white;
 }
 
 .listeCommentaire {
@@ -12,12 +12,12 @@
     border: solid 1px black;
     width: 50%;
     margin: 20px auto;
-    background-color: rgba(26, 115, 232, 0.2);
+    background-color: rgba(9, 31, 67, 0.9);
     word-wrap: break-word;
 }
 
 .commenter {
-    background-color: rgba(26, 115, 232, 0.2);
+    background-color: rgba(9, 31, 67, 0.9);
     border: solid 1px black;
     width: 50%;
     margin: auto;
@@ -28,5 +28,20 @@
     word-wrap: break-word;
     white-space: pre-line;
     padding: 20px;
-    margin: 20px
+    margin: 20px;
+}
+
+.article-complet h1 {
+    color: white;
+}
+
+.article-complet h2 {
+    text-align: left;
+    padding: 20px;
+    margin: 20px;
+}
+
+.article-complet button {
+    margin-bottom: 20px;
+    margin-right: 1px;
 }
