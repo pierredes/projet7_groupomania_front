@@ -72,7 +72,7 @@ class ListeCommentaireAdmin extends Component {
                     context.admin ?
                         <div>
                             <h1> Bienvenue sur l'interface d'administration</h1>
-                            <h2> Voici la pages d'administration des commentaire</h2>
+                            <h2> Voici la page d'administration des commentaires</h2>
                             <button><Link to='/admin/'>Article</Link></button>
                             <div className={Style.ListeCommentaire}>
                                 {commentaire}

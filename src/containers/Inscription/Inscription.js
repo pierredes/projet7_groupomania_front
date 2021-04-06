@@ -87,7 +87,7 @@ class inscription extends Component {
                 <Input inputtype='input' type="text" name="poste" placeholder="poste" label="Quel poste occupez-vous ?" value={this.state.poste} onChange={(event) => {this.setState({ poste: event.target.value })}} required/>
                 <Input inputtype='input' type="email" name="email" placeholder="email" label="Avec quelle adresse e-mail voulez-vous vous inscrire ?" value={this.state.email} onChange={(event) => {this.setState({ email: event.target.value })}} required/>
                 <Input inputtype='input' type="password" name="password" placeholder="mot de passe" label="Quel va être votre mot de passe ?" value={this.state.password} onChange={(event) => {this.setState({ password: event.target.value })}} required/>
-                <Input inputtype='input' type="password" name="password" placeholder="confirmation de votre mot de passe" label="confirmer votre mot de passe" value={this.state.confirmation_password} onChange={(event) => {this.setState({ confirmation_password: event.target.value })}} required/>
+                <Input inputtype='input' type="password" name="password" placeholder="confirmation de votre mot de passe" label="Confirmez votre mot de passe" value={this.state.confirmation_password} onChange={(event) => {this.setState({ confirmation_password: event.target.value })}} required/>
                 <button onClick={this.inscription}> Envoyer </button>
                 <p className="message_validation"> {this.state.error} </p>
             </form>

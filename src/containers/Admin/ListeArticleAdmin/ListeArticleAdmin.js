@@ -67,7 +67,7 @@ class admin extends ListeArticles {
                     context.admin ? 
                         <div>
                             <h1> Bienvenue sur l'interface d'administration</h1>
-                            <h2> Voici la liste des posts disponible !</h2>
+                            <h2> Voici la liste des posts disponibles !</h2>
                             <button><Link to='/admin/commentaire/'>Commentaire</Link></button>
                             <div className={Style.ListeArticle}>
                                 {post}
