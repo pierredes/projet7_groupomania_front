@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import './App.css';
 import Layout from './hoc/Layout/Layout';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+
 
 import ListeArticles from './containers/ListeArticles/ListeArticles';
 import ArticleComplet from './containers/ArticleComplet/ArticleComplet';
@@ -77,7 +77,6 @@ class App extends Component {
       <ConnecterContext.Provider value={{connecter: this.state.connecter, token: this.state.token, admin: this.state.admin}}>
       <Layout deconnection={this.deconnection}>
       <div className="App">
-        
           <Switch>
             <Route path='/deconnexion' render={() => this.deconnection()} />
             <Route path='/admin/commentaire/' exact component={ListeCommentaireAdmin} />
@@ -85,7 +84,7 @@ class App extends Component {
             <Route path='/inscription' component={inscription} />
             <Route path='/connection' render={(props) => (<Connection connection={this.connection} redirection={this.state.redirection} erreur={this.state.error} />)} />
             <Route path='/creer-post' component={CreerArticle}/>
-            <Route path='/' exact render={() => (<ListeArticles titre='Bonjour et bienvenue sur le forum de groupomania' />)} />
+            <Route path='/' exact render={() => (<ListeArticles titre='Bonjour et bienvenue sur le forum de Groupomania' />)} />
             <Route path='/mon-compte' exact render={() => (<MonCompte supression={this.deconnection} />)} />
             <Route path='/:id' exact component={ArticleComplet} />
             <Route path='/modifier/:id' exact component={ModifierArticle} />    
