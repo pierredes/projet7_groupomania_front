@@ -3,7 +3,6 @@ header {
     align-items: center;
     width: 100%;
     background-color: #D1515A;
-    height: 100px;
 }
 
 h1 {
@@ -32,17 +31,7 @@ a {
     color: black;
 }
 
-header a:hover {
+a:hover {
     color: #faf6de;
-}
-
-button {
-    background-color: #D1515A;
-    border: none;
-    font-size: 20px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-}
-
-button:hover {
-    color: #faf6de;
+    text-decoration: none;
 }

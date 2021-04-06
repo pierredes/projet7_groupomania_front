@@ -3,7 +3,9 @@ import { NavLink } from 'react-router-dom';
 import ConnecterContext from '../../Context/Context';
 import Logo from '../Logo/Logo';
 
-
+import ConnecterAdmin from './ConnecterAdmin/ConnecterAdmin';
+import ConnecterNonAdmin from './ConnecterNonAdmin/ConnecterNonAdmin';
+import Connexion from './Connexion/Connexion';
 import './header.css';
 
 const header = (props) => {
@@ -13,36 +15,16 @@ const header = (props) => {
                     context.connecter ? context.admin ?
                         <header>
                             <Logo />
-                            <nav>
-                                <ul>
-                                    <li><NavLink to='/' exact > Accueil</NavLink></li>
-                                    <li><NavLink to='/creer-post'>Créer un post</NavLink></li>
-                                    <li><NavLink to='/mon-compte'>Mon compte </NavLink></li>
-                                    <li><NavLink to='/admin'>Admin </NavLink></li>
-                                    <li><NavLink to='/deconnexion'>Déconnection </NavLink></li>
-                                </ul>
-                            </nav>
+                            <ConnecterAdmin />
                         </header>
                         : <header>
                         <Logo />
-                        <nav>
-                            <ul>
-                                <li><NavLink to='/' exact > Accueil</NavLink></li>
-                                <li><NavLink to='/creer-post'>Créer un post</NavLink></li>
-                                <li><NavLink to='/mon-compte'>Mon compte </NavLink></li>
-                                <li><NavLink to='/deconnexion'>Déconnection </NavLink></li>
-                            </ul>
-                        </nav>
+                        <ConnecterNonAdmin />
                     </header>
                     :
                         <header>
                             <Logo />
-                            <nav>
-                                <ul>
-                                    <li><NavLink to='/inscription'> Inscription</NavLink></li>
-                                    <li><NavLink to='/connection'>Connection</NavLink></li>
-                                </ul>
-                            </nav>
+                            <Connexion />
                         </header>
                 )}
             </ConnecterContext.Consumer>
