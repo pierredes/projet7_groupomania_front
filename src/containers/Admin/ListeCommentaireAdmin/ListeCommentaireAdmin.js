@@ -61,8 +61,9 @@ class ListeCommentaireAdmin extends Component {
         commentaire = this.state.commentaires.map(commentaire => {
             return (
                 <div key={commentaire.id} className={Style.Commentaire}>
+                    <p>De : {commentaire.utilisateur.prenom}</p>
                     <p>{commentaire.contenu}</p>
-                    <button onClick={() => this.supprimerCommentaire(commentaire.id)}> Supprimer</button>
+                    <button className={Style.SuprresionButton} onClick={() => this.supprimerCommentaire(commentaire.id)}> Supprimer</button>
                 </div>
             )
         })

@@ -68,7 +68,7 @@ class admin extends ListeArticles {
                         <div>
                             <h1> Bienvenue sur l'interface d'administration</h1>
                             <h2> Voici la liste des posts disponibles !</h2>
-                            <button><Link to='/admin/commentaire/'>Commentaire</Link></button>
+                            <button className={Style.Button}><Link to='/admin/commentaire/'>Commentaire</Link></button>
                             <div className={Style.ListeArticle}>
                                 {post}
                             </div>

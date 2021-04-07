@@ -16,9 +16,6 @@ const MonCompte = (props) => {
            <div className="MonCompte">
                 <button onClick={() => {suppresionDeCompte(); props.supression()}}> Supprimer mon compte </button>
             </div>
-            <div className="AVenir">
-                <p>Prochainement</p>
-            </div>
        </div>
         
     )
