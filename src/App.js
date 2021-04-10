@@ -1,10 +1,11 @@
+
 import React, { Component } from 'react';
 import axios from 'axios';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import './App.css';
 import Layout from './hoc/Layout/Layout';
-
+import jwt from 'jsonwebtoken';
 
 import ListeArticles from './containers/ListeArticles/ListeArticles';
 import ArticleComplet from './containers/ArticleComplet/ArticleComplet';
@@ -29,7 +30,6 @@ class App extends Component {
   }
 
   connection = (email, password) => {
-    const jwt = require('jsonwebtoken');
     let data = {
         email: Object.values(email)[0],
         password: Object.values(password)[0]
@@ -39,14 +39,10 @@ class App extends Component {
             const token = res.data.token;
             localStorage.setItem('token', token);
             const userId = jwt.decode(token);
-            localStorage.setItem('userId', userId.userId )
             this.setState({ redirection: true, connecter: true, token: token});
-             axios.get('http://localhost:8080/api/user/' + localStorage.getItem('userId')).then((res) => {
-              if(res.data.utilisateur.admin == true) {
-                this.setState({ admin: true });
-                localStorage.setItem('admin', true)
-              }
-            })
+            if(userId.isAdmin){
+              this.setState({ admin: true });
+            }
         })
         .catch(error => {
             this.setState({ error: error.response.data.message})
@@ -56,22 +52,23 @@ class App extends Component {
   deconnection = () => {
     this.setState({ connecter: false, token: null, redirection: false, admin: false})
     localStorage.removeItem('token');
-    localStorage.removeItem('userId');
-    localStorage.removeItem('admin');
     document.location.href = '/connection';
 }
 
 
   componentDidMount() {
-    if(localStorage.getItem('token') && localStorage.getItem('admin')) {
+    if(localStorage.getItem('token') && jwt.decode(localStorage.getItem('token')).isAdmin) {
       this.setState({connecter: true, token: localStorage.getItem('token'), admin: true})
     }
     else if(localStorage.getItem('token')){
       this.setState({connecter: true, token: localStorage.getItem('token'), admin: false})
     }
+    if(jwt.decode(localStorage.getItem('token')) && (jwt.decode(localStorage.getItem('token')).exp * 1000) > new Date().getTime() == false) {
+      this.deconnection()
+    }
 }
   render () {
-
+    
     return (
       <BrowserRouter>
       <ConnecterContext.Provider value={{connecter: this.state.connecter, token: this.state.token, admin: this.state.admin}}>

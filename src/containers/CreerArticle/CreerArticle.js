@@ -34,7 +34,6 @@ class creerArticle extends Component {
                     titre: this.state.titre,
                     sujet: this.state.sujet,
                     contenu: this.state.contenu,
-                    user_id: localStorage.getItem('userId')
                 };
                 axios.post('http://localhost:8080/api/post/', data, {headers: {Authorization: localStorage.getItem('token')}})
                     .then(res => {

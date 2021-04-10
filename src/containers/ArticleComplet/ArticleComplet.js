@@ -71,9 +71,7 @@ class ArticleComplet extends Component {
     
 
     supprimerArticle = () => {
-        axios.delete('http://localhost:8080/api/post/supression/' + this.props.match.params.id,
-        {headers: {Authorization: localStorage.getItem('token')}, 
-        data: {user_id: localStorage.getItem('userId'), admin: this.context.admin}})
+        axios.delete('http://localhost:8080/api/post/supression/' + this.props.match.params.id, {headers: {Authorization: localStorage.getItem('token')}})
             .then(() => {
                 this.setState({ redirection: true })
             })
@@ -136,9 +134,9 @@ class ArticleComplet extends Component {
         return (
             <div className='page_article_complet'>
                 {post}
-                {this.state.error}
+                <p className="message_validation">{this.state.error}</p>
                 <div className="commenter">
-                    <h2> Commenter </h2>
+                    <h2 style={{color: 'white'}}> Commenter </h2>
                     <Input inputtype='textarea' type="text" name="commenter" placeholder="commenter" onChange={(event) => {this.setState({ commenter: event.target.value })}} required/>
                     <button onClick={this.postCommentaire}> Commenter </button>
                 </div>

@@ -30,7 +30,7 @@ class connection extends Component {
                         this.props.connection(email, password); 
                     }
                 }> Envoyer </button>
-                <p>{this.props.erreur} </p>
+                <p className="message_validation">{this.props.erreur} </p>
             </form>
 
         )

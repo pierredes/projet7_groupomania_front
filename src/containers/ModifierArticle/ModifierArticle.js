@@ -33,7 +33,6 @@ class modifierArticle extends Component {
                     titre: this.state.titre,
                     sujet: this.state.sujet,
                     contenu: this.state.contenu,
-                    user_id: localStorage.getItem('userId')
                 };
                 axios.put('http://localhost:8080/api/post/modification/' + this.props.match.params.id, data, {headers: {Authorization: localStorage.getItem('token')}})
                     .then(res => {

@@ -36,7 +36,7 @@ class admin extends ListeArticles {
     }
 
     supprimerArticle = (id) => {
-        axios.delete('http://localhost:8080/api/post/supression/' + id,  {data: {admin: this.context.admin}, headers: {Authorization: localStorage.getItem('token')}})
+        axios.delete('http://localhost:8080/api/post/supression/' + id, {headers: {Authorization: localStorage.getItem('token')}})
             .then(() => {
                 this.setState({ updatePage: true });
             })

@@ -47,7 +47,7 @@ class ListeCommentaireAdmin extends Component {
     }
 
     supprimerCommentaire = (id) => {
-        axios.delete('http://localhost:8080/api/commentaire/supprimer/' + id,  {data: {admin: this.context.admin}, headers: {Authorization: localStorage.getItem('token')}})
+        axios.delete('http://localhost:8080/api/commentaire/supprimer/' + id,  {headers: {Authorization: localStorage.getItem('token')}})
             .then(() => {
                 this.setState({ updatePage: true });
             })
